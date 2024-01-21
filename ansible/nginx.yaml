@@ -1,0 +1,56 @@
+---
+- name: Test Connection to my servres
+  hosts: web
+  become:
+    yes
+
+  tasks:
+    - name: update apt packages
+      apt:
+        force_apt_get: true
+        upgrade: dist
+        update_cache: yes
+      become: true
+
+    - name: Install nginx on all servers
+      apt:
+        name: nginx
+        state: latest #установить определенную версию nginx
+        update_cache: yes
+
+- name: copy index.html webserver 1 # Копирование index.html на первый сервер
+  hosts: web-vm-1
+  become: yes
+
+  tasks:
+    - name: copy index_new.html
+      ansible.builtin.copy:
+        src: /home/gabber/sys-diplom/sys-diplom/ansible/www/index_1.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: sudo
+        mode: "0644"
+
+- name: copy index.html webserver 2 # Копирование index.html на второй сервер
+  hosts: web-vm-2
+  become: yes
+
+  tasks:
+    - name: copy index_new.html
+      ansible.builtin.copy:
+        src: /home/gabber/sys-diplom/sys-diplom/ansible/www/index_2.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: sudo
+        mode: "0644"
+
+- name: Enable Nginx
+  hosts: web
+  become: yes
+
+  tasks:
+    - name:
+      ansible.builtin.service:
+        name: nginx
+        enabled: true
+        state: restarted

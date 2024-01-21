@@ -1,0 +1,9 @@
+---
+- hosts: zabbix-server
+  remote_user: user
+  become: yes
+  become_method: sudo
+  vars:
+    - password_db: 11921192
+  roles:
+    - zabbix-server

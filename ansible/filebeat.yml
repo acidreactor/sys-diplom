@@ -1,0 +1,7 @@
+---
+- hosts: webserver
+  remote_user: user
+  become: yes
+  become_method: sudo
+  roles:
+    - filebeat

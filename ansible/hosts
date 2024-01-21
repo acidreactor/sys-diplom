@@ -1,0 +1,32 @@
+[web]
+web-vm-1 ansible_host=10.1.1.10
+web-vm-2 ansible_host=10.2.1.20
+
+[zabbix]
+zabbix ansible_host=10.3.1.30
+
+[elasticsearch]
+elasticsearch ansible_host=10.3.1.33
+
+[kibana]
+kibana ansible_host=10.4.1.44
+
+[bastion]
+bastion ansible_host=10.4.1.40
+
+
+[project:children]
+web
+zabbix
+elasticsearch
+kibana
+bastion
+
+[project:vars]
+ansible_ssh_common_args="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand=\"ssh -o StrictHostKeyChecking=no -q \gabber@158.160.16.8 -o IdentityFile=/home/gabber/.ssh/id_ed25519 -o Port=22 -W %h:22\""
+
+
+[all:vars]
+ansible_connection='ssh'
+ansible_ssh_port='22'
+ansible_user='gabber'

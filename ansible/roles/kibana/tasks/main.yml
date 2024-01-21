@@ -1,0 +1,41 @@
+---
+- name: ping server
+  ping:
+
+- name: update apt cache
+  apt:
+    update_cache: yes
+
+- name: install gnupg, apt-transport-https
+  apt:
+    name:
+      - apt-transport-https
+      - gnupg
+    state: present
+
+- name: Copy kibana-7.17.16-amd64.deb
+  copy:
+    src: kibana-7.17.16-amd64.deb
+    dest: /home/user/
+
+- name: install kibana
+  apt:
+    deb: /home/user/kibana-7.17.16-amd64.deb
+
+- name: Copy config file for kibana
+  copy:
+    src: kibana.yml
+    dest: /etc/kibana
+    mode: 0644
+    owner: user
+    group: root
+
+- name: restarted kibana
+  service:
+    name: kibana
+    state: restarted   
+
+- name: systemctl enable kibana
+  ansible.builtin.service:
+    name: kibana
+    enabled: yes

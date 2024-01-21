@@ -1,0 +1,7 @@
+.DS
+.DS_Store
+key.json
+terraform.tfvars
+terraform.tfstate
+.terraform.lock.hcl
+.terraform/

@@ -1,0 +1,26 @@
+---
+- name: install zabbix-agent
+  apt:
+    name: zabbix-agent
+    state: present
+
+- name: replace zabbix-agent configuration
+  lineinfile:
+    path: /etc/zabbix/zabbix_agentd.conf
+    regexp: "^Server=(.*)"
+    line: "Server={{ zabbix_server }}"
+    state: present
+
+- name: update zabbix-agent configuration
+  lineinfile:
+    path: /etc/zabbix/zabbix_agentd.conf
+    regexp: "^ServerActive=(.*)"
+    line: "ServerActive={{ zabbix_server }}"
+    state: present
+
+- name: enable and restart zabbix agent
+  ansible.builtin.systemd:
+    name: zabbix-agent
+    enabled: true
+    masked: no
+    state: restarted

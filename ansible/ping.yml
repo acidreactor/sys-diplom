@@ -1,0 +1,11 @@
+---
+- name: test Connection
+  hosts: all
+  become: yes
+  gather_facts: off
+
+  tasks:
+    - name: ping server
+      ping:
+  tags:
+    - test_connection

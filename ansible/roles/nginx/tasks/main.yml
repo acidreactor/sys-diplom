@@ -1,0 +1,37 @@
+---
+- name: ping server
+  ping:
+   
+- name: update package
+  apt:
+    force_apt_get: true
+    update_cache: yes
+
+- name: install nginx
+  apt:
+    name: nginx
+    state: latest
+ 
+- name: copy website files
+  copy:
+    src: html
+    dest: /var/www/
+    mode: 0755
+
+- name: replace nginx config
+  copy: 
+    src: default
+    dest: /etc/nginx/sites-avalable
+  
+- name: replace index-file
+  ansible.builtin.shell: echo $(hostname | cut -d '.' -f 1) >> /var/www/html/index.html
+  args:
+    executable: /bin/bash
+  
+- name: enable and restart nginx
+  ansible.builtin.systemd:
+    name: nginx
+    enabled: true
+    masked: no
+    state: restarted  
+

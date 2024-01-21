@@ -1,0 +1,7 @@
+---
+- hosts: zabbix-agent
+  become: true
+  vars:
+    - zabbix_server: 192.168.4.10 # insert int IP 
+  roles:
+    - zabbix-agent
