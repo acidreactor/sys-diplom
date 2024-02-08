@@ -81,7 +81,7 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 Создайте ВМ, разверните на ней Kibana, сконфигурируйте соединение с Elasticsearch.
 
 ![kibana-web-vm-1](./images/kibana-web-vm-1.png)
-![kibana-web-vm-2](./images/kibana-web-vm-2png)
+![kibana-web-vm-2](./images/kibana-web-vm-2.png)
 
 ELK доступен по ссылке:
 http://51.250.44.202:5601/app/discover#/?_g=(filters:!(),query:(language:kuery,query:''),refreshInterval:(pause:!t,value:0),time:(from:now%2Fd,to:now%2Fd))&_a=(columns:!(),filters:!(),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!(!('@timestamp',desc)))
