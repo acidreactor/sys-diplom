@@ -13,21 +13,21 @@
       - gnupg
     state: present
 
-- name: Copy kibana-7.17.16-amd64.deb
-  copy:
-    src: kibana-7.17.16-amd64.deb
-    dest: /home/user/
+- name: Get kibana.7.17.14
+  ansible.builtin.get_url:  
+    url: https://mirror.yandex.ru/mirrors/elastic/7/pool/main/k/kibana/kibana-7.17.14-amd64.deb 
+    dest: /home/gabber/
 
-- name: install kibana
+- name: Install kibana
   apt:
-    deb: /home/user/kibana-7.17.16-amd64.deb
+    deb: /home/gabber/kibana-7.17.14-amd64.deb
 
 - name: Copy config file for kibana
   copy:
-    src: kibana.yml
+    src: /home/gabber/sys-diplom/sys-diplom/ansible/roles/kibana/files/kibana.yml
     dest: /etc/kibana
     mode: 0644
-    owner: user
+    owner: gabber
     group: root
 
 - name: restarted kibana

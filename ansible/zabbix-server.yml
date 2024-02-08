@@ -1,9 +1,17 @@
+#---
+#- hosts: zabbix-server
+#-  remote_user: gabber
+#-  become: yes
+#-  become_method: sudo
+#-  roles:
+#-    - zabbix-server
+
 ---
 - hosts: zabbix-server
-  remote_user: user
+  remote_user: gabber
   become: yes
   become_method: sudo
   vars:
-    - password_db: 11921192
+    - password_db: netology
   roles:
     - zabbix-server

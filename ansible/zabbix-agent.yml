@@ -1,7 +1,9 @@
 ---
 - hosts: zabbix-agent
-  become: true
+  remote_user: gabber
+  become: yes
+  become_method: sudo
   vars:
-    - zabbix_server: 192.168.4.10 # insert int IP 
+    - zabbix_server: 10.3.1.30 # insert int IP 
   roles:
     - zabbix-agent

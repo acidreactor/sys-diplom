@@ -1,6 +1,6 @@
 ---
 - hosts: kibana
-  remote_user: user
+  remote_user: gabber
   become: yes
   become_method: sudo
   roles:

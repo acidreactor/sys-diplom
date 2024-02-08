@@ -23,7 +23,7 @@
   apt:
     force_apt_get: true
     update_cache: yes
-        #upgrade: dist
+    upgrade: dist
   become: true
 
 - name: install zabbix
@@ -91,7 +91,7 @@
     
 - name: replace zabbix config
   copy: 
-    src: nginx.conf
+    src: /home/gabber/sys-diplom/sys-diplom/ansible/roles/zabbix-server/files/nginx.conf
     dest: /etc/zabbix/
     
 - name: enable and restart zabbix-server
@@ -100,6 +100,7 @@
     enabled: true
     masked: no
     state: restarted
+  become: true
 
 - name: enable and restart zabbix-agent
   ansible.builtin.systemd:
@@ -107,6 +108,7 @@
     enabled: true
     masked: no
     state: restarted
+  become: true
 
 - name: enable and restart nginx
   ansible.builtin.systemd:
@@ -114,7 +116,7 @@
     enabled: true
     masked: no
     state: restarted
-  become: yes
+  become: true
 
 - name: enable and restart php
   ansible.builtin.systemd:
@@ -122,4 +124,5 @@
     enabled: true
     masked: no
     state: restarted
+  become: true
 

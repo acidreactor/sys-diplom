@@ -1,29 +1,44 @@
-[web]
-web-vm-1 ansible_host=10.1.1.10
-web-vm-2 ansible_host=10.2.1.20
+[webserver]
+web-vm-1.ru-central1.internal
+web-vm-2.ru-central1.internal
 
-[zabbix]
-zabbix ansible_host=10.3.1.30
+[zabbix-server]
+zabbix-vm.ru-central1.internal
+
+[zabbix-agent]
+web-vm-1.ru-central1.internal
+web-vm-2.ru-central1.internal
+
+[node_exporters]
+web-vm-1.ru-central1.internal
+web-vm-2.ru-central1.internal
+
+[filebeat_node]
+web-vm-1.ru-central1.internal
+web-vm-2.ru-central1.internal
 
 [elasticsearch]
-elasticsearch ansible_host=10.3.1.33
+elasticsearch-vm.ru-central1.internal
 
 [kibana]
-kibana ansible_host=10.4.1.44
+kibana-vm.ru-central1.internal
 
 [bastion]
-bastion ansible_host=10.4.1.40
+bastion-vm.ru-central1.internal
 
 
 [project:children]
-web
-zabbix
+webserver
+zabbix-server
+zabbix-agent
+node_exporters
+filebeat_node
 elasticsearch
 kibana
 bastion
 
 [project:vars]
-ansible_ssh_common_args="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand=\"ssh -o StrictHostKeyChecking=no -q \gabber@158.160.16.8 -o IdentityFile=/home/gabber/.ssh/id_ed25519 -o Port=22 -W %h:22\""
+ansible_ssh_common_args="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand=\"ssh -o StrictHostKeyChecking=no -q \gabber@51.250.37.205 -o IdentityFile=/home/gabber/.ssh/id_ed25519 -o Port=22 -W %h:22\""
 
 
 [all:vars]

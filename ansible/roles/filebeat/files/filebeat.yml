@@ -19,10 +19,10 @@ filebeat.inputs:
 # Below are the input specific configurations.
 
 # filestream is an input for collecting log messages from files.
-- type: filestream
+- type: log
 
   # Unique ID among all inputs, an ID is required.
-  id: my-filestream-id
+  #id: my-filestream-id
 
   # Change to true to enable this input configuration.
   enabled: true
@@ -108,7 +108,7 @@ setup.kibana:
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
-  host: "192.168.4.200:5601"
+  host: "10.4.1.7:5601"
 
   # Kibana Space ID
   # ID of the Kibana Space into which the dashboards should be loaded. By default,
@@ -135,15 +135,15 @@ setup.kibana:
 # ---------------------------- Elasticsearch Output ----------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["192.168.3.10:9200"]
+  hosts: ["10.3.1.33:9200"]
 
   # Protocol - either `http` (default) or `https`.
   #protocol: "https"
 
   # Authentication credentials - either API key or username/password.
   #api_key: "id:api_key"
-  #username: "elastic"
-  #password: "changeme"
+  username: "elastic"
+  password: "elastic"
 
 # ------------------------------ Logstash Output -------------------------------
 #output.logstash:
@@ -162,11 +162,11 @@ output.elasticsearch:
 
 # ================================= Processors =================================
 processors:
-  - add_host_metadata:
-      when.not.contains.tags: forwarded
+  - add_host_metadata: ~
+      #when.not.contains.tags: forwarded
   - add_cloud_metadata: ~
-  - add_docker_metadata: ~
-  - add_kubernetes_metadata: ~
+  #- add_docker_metadata: ~
+  #- add_kubernetes_metadata: ~
 
 # ================================== Logging ===================================
 

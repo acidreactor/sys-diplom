@@ -9,18 +9,18 @@
       - gnupg
     state: present
 
-- name: copy filebeat-7.17.16-amd64.deb
-  copy:
-    src: filebeat-7.17.16-amd64.deb
-    dest: /home/user/
+- name: Get filebeat 7.17.14
+  ansible.builtin.get_url:
+    url: https://mirror.yandex.ru/mirrors/elastic/7/pool/main/f/filebeat/filebeat-7.17.14-amd64.deb
+    dest: /home/gabber/
 
-- name: install filebeat
+- name: Install filebeat
   apt:
-    deb: /home/user/filebeat-7.17.16-amd64.deb
+    deb: /home/gabber/filebeat-7.17.14-amd64.deb 
 
 - name: Copy config file for filebeat
   copy:
-    src: filebeat.yml
+    src: /home/gabber/sys-diplom/sys-diplom/ansible/roles/filebeat/files/filebeat.yml
     dest: /etc/filebeat
  
 - name: nginx restart

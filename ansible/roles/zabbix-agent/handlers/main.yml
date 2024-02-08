@@ -1,6 +1,8 @@
 ---
-    - name: Start and enable Zabbix Agent service
-      service:
+    - name: enable and restart zabbix-agent
+      ansible.builtin.systemd:
         name: zabbix-agent
-        state: started
-        enabled: yes
+        enabled: true
+        masked: no
+        state: restarted
+      become: true

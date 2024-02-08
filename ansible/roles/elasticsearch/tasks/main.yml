@@ -13,21 +13,21 @@
       - gnupg
     state: present
 
-- name: Copy elasticsearch-7.17.16-amd64.deb
-  copy:
-    src: elasticsearch-7.17.16-amd64.deb
-    dest: /home/user/
+- name: Copy elasticsearch-7.17.14-amd64.deb
+  ansible.builtin.get_url:
+    url: https://mirror.yandex.ru/mirrors/elastic/7/pool/main/e/elasticsearch/elasticsearch-7.17.14-amd64.deb
+    dest: /home/gabber/
 
 - name: Install elasticsearch
   apt:
-    deb: /home/user/elasticsearch-7.17.16-amd64.deb
+    deb: /home/gabber/elasticsearch-7.17.14-amd64.deb
 
 - name: Copy config file for elasticsearch
   copy:
-    src: elasticsearch.yml
+    src: /home/gabber/sys-diplom/sys-diplom/ansible/roles/elasticsearch/files/elasticsearch.yml
     dest: /etc/elasticsearch
     mode: 0644
-    owner: user
+    owner: gabber
     group: root
 
 - name: enable and restart elasticsearch

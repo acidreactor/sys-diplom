@@ -2,7 +2,7 @@
 Description=Node Exporter
 After=network.target
 [Service]
-User=prometheus
+User=gabber
 Group=prometheus
 Type=simple
 ExecStart=/etc/prometheus/node-exporter/node_exporter
