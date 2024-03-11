@@ -75,7 +75,7 @@ http://158.160.132.201:80/
 ![http-codes-vm-2](./images/http-web-vm-2.png)
 
 Zabbix доступен по ссылке:
-http://51.250.43.179:8080/zabbix.php?action=dashboard.view&dashboardid=1
+http://158.160.152.170:8080/zabbix.php?action=dashboard.view&dashboardid=1
 
 ### Логи
 Cоздайте ВМ, разверните на ней Elasticsearch. Установите filebeat в ВМ к веб-серверам, настройте на отправку access.log, error.log nginx в Elasticsearch.
