@@ -71,6 +71,8 @@ http://158.160.132.201:80/
 Настройте дешборды с отображением метрик, минимальный набор — по принципу USE (Utilization, Saturation, Errors) для CPU, RAM, диски, сеть, http запросов к веб-серверам. Добавьте необходимые tresholds на соответствующие графики.
 
 ![zabbix-dashboard](./images/zabbix-dashboard.png)
+![http-codes-vm-1](./images/http-web-vm-1.png)
+![http-codes-vm-2](./images/http-web-vm-2.png)
 
 Zabbix доступен по ссылке:
 http://51.250.43.179:8080/zabbix.php?action=dashboard.view&dashboardid=1
